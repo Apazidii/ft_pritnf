@@ -1,0 +1,29 @@
+NAME	= libftprintf.a
+
+FUNCS 	=	main.c				ft_substr.c			ft_tools.c\
+			ft_allprints.c			ft_putullint.c		ft_putint.c\
+			ft_putuint.c		ft_putllint.c
+FUNCSO = ${FUNCS:.c=.o}
+GCC = gcc
+CFLAGS = -c
+HDRS = head.h
+
+all:		${NAME}
+
+${NAME}:	${FUNCSO} ${HDRS} 
+			ar rc ${NAME} ${FUNCSO}
+			
+.c.o:		
+			${GCC} ${CFLAGS} $< -o ${<:.c=.o} 
+
+bonus: re
+
+re: fclean all
+
+clean:
+		rm -f ${FUNCSO}
+
+fclean:	clean
+		rm -f ${NAME}
+
+.PHONY:	all clean fclean
