@@ -22,12 +22,20 @@ int		ft_atoi(const char *s);
 
 //tools
 int		is_convs(char c);
-int		len_int(long long int n);
 int		find_flag(char c, char *params);
 int		fill_c(char c, int k);
+int		fill_width(char *params, void *content, int (*f)(void *));
+
+//len
+int	len_int(void *n);
+int len_chr(void *n);
+int	len_str(void *n);
+int	len_hex(void *n);
+
 
 //params
 int	get_width(char *str);
+int	apply_half_params(char *params, int w);
 
 //ft_put
 int	ft_putnbr_base(int n, int base, int low);

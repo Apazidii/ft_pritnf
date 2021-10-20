@@ -4,9 +4,17 @@ N_TEMP = temp.a
 
 NAME = libftprintf.a
 
-SRCS 	=	main.c				libft.a			ft_tools.c\
-			ft_allprints.c			ft_putullint.c		ft_putint.c\
-			ft_putuint.c		ft_putllint.c
+SRCS 	=	main.c					\
+			ft_tools.c				\
+			ft_allprints.c			\
+			ft_putullint.c			\
+			ft_putint.c				\
+			ft_putuint.c			\
+			ft_putllint.c			\
+			ft_params.c				\
+			libft/ft_atoi.c			\
+			libft/ft_substr.c		\
+			libft/ft_strlen.c		
 		
 SURPL_O = 	 ${SRCS:.c=.o}
 

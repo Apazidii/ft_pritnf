@@ -9,15 +9,16 @@ FUNCS 	=	main.c					\
 			ft_params.c				\
 			libft/ft_atoi.c			\
 			libft/ft_substr.c		\
-			libft/ft_strlen.c		
+			libft/ft_strlen.c		\
+			ft_apply_params.c		
 FUNCSO = ${FUNCS:.c=.o}
 GCC = gcc
-CFLAGS = -c
+CFLAGS = -c 
 HDRS = head.h
 
 all:		${NAME}
 			make clean
-			clear
+			#clear
 			./${NAME}
 			
 

@@ -4,7 +4,7 @@ static void	funcullint(unsigned long long int n, int base, int low, int *f)
 {
 	char	c;
 
-	if (n >= base)
+	if (n >= (unsigned long long int) base)
 		funcullint(n / base, base, low, f);
 	c = '0' + (n % base);
 	if (n % base > 9 && low == 1)

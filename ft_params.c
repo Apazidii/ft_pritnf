@@ -34,4 +34,16 @@ int	fill_c(char c, int k)
 		write(1, &c, 1);
 		k--;
 	}
+	return (k);
+}
+
+int	fill_width(char *params, void *content, int (*f)(void *))
+{
+	int	w;
+
+	w = get_width(params);
+	w = w - f(content);
+	if (w > 0)
+		return (fill_c(' ', w));
+	return (0);
 }

@@ -4,7 +4,7 @@ static void	funcuint(unsigned int n, int base, int low, int *f)
 {
 	char	c;
 
-	if (n >= base)
+	if (n >= (unsigned int)base)
 		funcuint(n / base, base, low, f);
 	c = '0' + (n % base);
 	if (n % base > 9 && low == 1)

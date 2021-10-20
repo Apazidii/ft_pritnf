@@ -2,6 +2,10 @@
 
 int	def_to_types(char *params, char type, va_list m)
 {
+	int	w;
+
+	w = get_width(params);
+	w = apply_half_params(params, w);
 	if (type == 'd' || type == 'i')
 		return (print_int(params, va_arg(m, int)));
 	else if (type == 'c')
@@ -65,11 +69,10 @@ int	ft_printf(const char *str, ...)
 
 int main()
 {
-	char s[3];
-	// ft_printf("%p\n", (void *)-1);
-	ft_printf("#%+10d#", -1234);
-	// printf   ("%d\n", 2, 3);
-	// printf   (s, 10, 20, 'q', "HELLO", s, 456, 456, 123);
+	// int k = 1234;
+	// printf("%d\n", len_int(&k));
+	ft_printf("_%6d_", -1234);
+
 // https://github.com/paulo-santana/ft_printf_tester.git
 }
 
