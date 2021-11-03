@@ -1,3 +1,20 @@
 {
-  "files": {}
+  "files": {
+    "ft_print_char.c": [
+      {
+        "id": "100b115c-ae16-48e9-8bcd-c6cb939c41cc",
+        "line": 3,
+        "version": 36,
+        "index": 19
+      }
+    ],
+    "main.c": [
+      {
+        "id": "633f2400-9af8-458c-b440-4ed5b034a888",
+        "line": 3,
+        "version": 3725,
+        "index": 19
+      }
+    ]
+  }
 }
