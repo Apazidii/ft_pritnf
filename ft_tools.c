@@ -22,38 +22,33 @@ int is_flags(char c)
 	return (0);
 }
 
-int	get_width(char *str)
+int	get_width(char *str, va_list m)
 {
 	while (is_flags(*str))
 		str++;
+	if (*str == '*')
+		return (va_arg(m, int));
 	return (ft_atoi(str));
 } 
 
-int get_accuracy(char *str)
+int get_accuracy(char *str, va_list m)
 {
     while (*str != '.' && *str != '\0')
         str++;
     if (*str == '.')
-        return (ft_atoi(str + 1));
-    return (0);
-}
-
-int	find_flag(char c, char *params)
-{
-    while ((!(*params > '0' && *params <= '9') && *params != '\0'))
 	{
-		if (*params == c)
-			return (1);
-		params++;
+		if (*(str + 1) == '*')
+			return (va_arg(m, int));
+        return (ft_atoi(str + 1));
 	}
-	return (0);
+    return (-1);
 }
 
-void fill_field(char *s, char *params, int w)
+void fill_field(char *s, t_params *params, int w)
 {
     char c;
 
-    if (find_flag('0', params) && !(find_flag('-', params)))
+    if (params->zero && !(params->min))
         c = '0';
     else
         c = ' ';
@@ -104,17 +99,18 @@ void func_itoa(unsigned long int n, int base, char *res, int upper)
 
 void fill_zero(char *s, int n)
 {
-	while (n > 0)
+	int i = 0;
+
+	while (i < n)
 	{
-		*s = '0';
-		s--;
-		n--;
+		s[i] = '0';
+		i++;
 	}
 }
 
 char *itoa_base(unsigned long int n, int base, char *res, int upper, int ac)
 {
-	fill_zero(res, ac);
+	fill_zero(res - (ac - 1), ac);
 	func_itoa(n, base, res, upper);
 	return res;
 }
@@ -128,8 +124,50 @@ void str_move(char *str, char *content)
 		content++;
 	}
 }
-
-char *del_flag(char *str, char c)
+int	find_flag(char c, char *params)
 {
-	
+    while ((!(*params > '0' && *params <= '9') && *params != '\0'))
+	{
+		if (*params == c)
+			return (1);
+		params++;
+	}
+	return (0);
+}
+void init_params(t_params *s)
+{
+	s->min = 0;
+	s->plus = 0;
+	s->space = 0;
+	s->hash = 0;
+	s->zero = 0;
+	s->width = 0;
+	s->accuracy = 0;
+}
+
+t_params *gen_params(char *params, va_list m)
+{
+	t_params	*res;
+
+	res = (t_params *)malloc(sizeof(t_params) * 1);
+	init_params(res);
+	res->width = get_width(params, m);
+	res->accuracy = get_accuracy(params, m);
+	while ((!(*params > '0' && *params <= '9') && *params != '\0' && *params != '.'))
+	{
+		if (*params == '-')
+			res->min = 1;
+		if (*params == '+')
+			res->plus = 1;
+		if (*params == ' ')
+			res->space = 1;
+		if (*params == '#')
+			res->hash = 1;
+		if (*params == '0')
+			res->zero = 1;
+		params++;
+	}
+	if (res->accuracy > 0)
+		res->zero = 0;
+	return (res);
 }

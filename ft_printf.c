@@ -3,23 +3,25 @@
 int	def_to_types(char *params, char type, va_list m)
 {
 	if (type == 'd' || type == 'i')
-		return (print_int(params, va_arg(m, int)));
-	else if (type == 'c')
-		return (print_chr(params, va_arg(m, int)));
-	else if (type == 's')
-		return (print_str(params, va_arg(m, char *)));
-	else if (type == 'p')
-		return (print_ptr(params, va_arg(m, unsigned long int)));
-	else if (type == 'x')
-		return (print_hex(params, va_arg(m, unsigned int)));
-	else if (type == 'X')
-		return (print_HEX(params, va_arg(m, unsigned int)));
-	else if (type == '%')
-		return (print_prc());
-	else if (type == 'u')
-		return (print_unt(params, va_arg(m, unsigned int)));
+		return (print_int(params, m));
+	// else if (type == 'c')
+	// 	return (print_chr(params, va_arg(m, int)));
+	// else if (type == 's')
+	// 	return (print_str(params, va_arg(m, char *)));
+	// else if (type == 'p')
+	// 	return (print_ptr(params, va_arg(m, unsigned long int)));
+	// else if (type == 'x')
+	// 	return (print_hex(params, va_arg(m, unsigned int)));
+	// else if (type == 'X')
+	// 	return (print_HEX(params, va_arg(m, unsigned int)));
+	// else if (type == '%')
+	// 	return (print_prc());
+	// else if (type == 'u')
+	// 	return (print_unt(params, va_arg(m, unsigned int)));
+	// else
+	// 	return (print_not(params));
 	else
-		return (print_not(params));
+		return (1);
 }
 
 char	*print_arg(char *s, va_list m, int *l)
@@ -63,14 +65,7 @@ int	ft_printf(const char *str, ...)
 	return (res);
 }
 
-// void test_printf(char *s, int n)
-// {
-// 	ft_printf(s, n);
-// 	printf   (s, n);
-// }
-
 // int main()
 // {
-// 	test_printf("_%d_\n", 0);
 // 	// https://github.com/paulo-santana/ft_printf_tester.git
 // }

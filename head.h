@@ -8,15 +8,30 @@
 #include <math.h>
 
 
+typedef struct	s_params
+{
+	int	min;
+	int	plus;
+	int space;
+	int hash;
+	int zero;
+
+	int width;
+	int accuracy;
+}				t_params;
+
 //tools
 int		is_convs(char c);
-int		get_width(char *str);
-int		get_accuracy(char *str);
+
+int		get_width(char *str, va_list m);
+int		get_accuracy(char *str, va_list m);
+
 int		find_flag(char c, char *params);
 char	*itoa_base(unsigned long int n, int base, char *res, int upper, int ac);
 int		len_base(long long int n, int base);
 void	str_move(char *str, char *content);
-void 	fill_field(char *s, char *params, int w);
+void fill_field(char *s, t_params *params, int w);
+t_params *gen_params(char *params, va_list m);
 
 
 //libft
@@ -27,15 +42,15 @@ void	ft_putstr_fd(char *s, int fd);
 
 
 //prints
-int print_int(char *params, int content);
-int print_chr(char *params, unsigned char content);
-int print_str(char *params, char *content);
-int print_ptr(char *params, unsigned long int content);
-int print_hex(char *params, unsigned int content);
-int print_HEX(char *params, unsigned int content);
-int print_prc();
-int print_unt(char *params, unsigned int content);
-int print_not(char *params);
+int print_int(char *params, va_list m);
+// int print_chr(char *params, unsigned char content);
+// int print_str(char *params, char *content);
+// int print_ptr(char *params, unsigned long int content);
+// int print_hex(char *params, unsigned int content);
+// int print_HEX(char *params, unsigned int content);
+// int print_prc();
+// int print_unt(char *params, unsigned int content);
+// int print_not(char *params);
 
 int	ft_printf(const char *str, ...);
 
