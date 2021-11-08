@@ -1,42 +1,53 @@
 #include "head.h"
 
-static void	apply_flag_hex(char *res, t_params *params, int ind)
+static void	apply_flag_ptr(char *res, t_params *params, int ind)
 {
 	char	c;
 
 	c = 0;
 	if (params->zero || params->min)
 		ind = 0;
+	if (params->plus)
+		c = '+';
+	else if (params->space)
+		c = ' ';
+	if (c != 0)
+	{
+		res[ind] = c;
+		ind++;
+	}
 	str_move(&res[ind], "0x");
 }
 
-static int	gen_len_hex(t_params *params, unsigned int content)
+static int	gen_len_ptr(t_params *params, unsigned long int content)
 {
 	int	l;
 
 	l = len_base(content, 16);
 	if (l < params->accuracy)
 		l = params->accuracy;
+	if (((params->plus || params->space) && content > 0))
+		l++;
 	l = l + 2;
 	return (l);
 }
 
-static char	*gen_str_hex(t_params *params, int w, int l)
+static char	*gen_str_ptr(t_params *params, int w, int l)
 {
 	char	*str;
 
 	str = (char *)malloc(sizeof(char) * w + 1);
 	str[w] = '\0';
 	fill_field(str, params, w);
-	apply_flag_hex(str, params, w - l);
+	apply_flag_ptr(str, params, w - l);
 	return (str);
 }
 
-static char	*itoa_hex(t_params *params, unsigned int *content, int w, int l)
+static char	*itoa_ptr(t_params *params, unsigned long int *content, int w, int l)
 {
 	char	*str;
 
-	str = gen_str_hex(params, w, l);
+	str = gen_str_ptr(params, w, l);
 	if (!(params->accuracy == 0 && *content == 0))
 	{
 		if (params->min)
@@ -47,21 +58,21 @@ static char	*itoa_hex(t_params *params, unsigned int *content, int w, int l)
 	return (str);
 }
 
-int	print_hex(char *p, va_list m)
+int	print_ptr(char *p, va_list m)
 {
-	int				w;
-	int				l;
-	char			*str;
-	t_params		*params;
-	unsigned int	content;
+	int					w;
+	int					l;
+	char				*str;
+	t_params			*params;
+	unsigned long int	content;
 
 	params = gen_params(p, m);
-	content = va_arg(m, unsigned int);
-	l = gen_len_hex(params, content);
+	content = va_arg(m, unsigned long int);
+	l = gen_len_ptr(params, content);
 	w = params->width;
 	if (w < l)
 		w = l;
-	str = itoa_hex(params, &content, w, l);
+	str = itoa_ptr(params, &content, w, l);
 	free(params);
 	if (!(params->accuracy == 0 && params->width == 0 && content == 0))
 		ft_putstr_fd(str, 1);

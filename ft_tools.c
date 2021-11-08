@@ -124,6 +124,21 @@ void str_move(char *str, char *content)
 		content++;
 	}
 }
+
+void str_n_move(char *str, char *content, int l)
+{
+	int	i;
+
+	i = 0;
+	while (*content != '\0' && i < l)
+	{
+		i++;
+		*str = *content;
+		str++;
+		content++;
+	}
+}
+
 int	find_flag(char c, char *params)
 {
     while ((!(*params > '0' && *params <= '9') && *params != '\0'))
@@ -143,6 +158,14 @@ void init_params(t_params *s)
 	s->zero = 0;
 	s->width = 0;
 	s->accuracy = 0;
+}
+
+void clear_params(t_params *s)
+{
+	s->plus = 0;
+	s->space = 0;
+	s->hash = 0;
+	s->zero = 0;
 }
 
 t_params *gen_params(char *params, va_list m)
