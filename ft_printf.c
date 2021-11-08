@@ -67,5 +67,6 @@ int	ft_printf(const char *str, ...)
 
 // int main()
 // {
+// 	ft_printf("this %d number", 17);
 // 	// https://github.com/paulo-santana/ft_printf_tester.git
 // }

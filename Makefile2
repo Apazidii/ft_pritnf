@@ -14,7 +14,7 @@ HDRS = head.h
 
 all:		${NAME}
 			make clean
-			clear
+			#clear
 			./${NAME}
 			
 
