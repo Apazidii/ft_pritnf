@@ -1,6 +1,6 @@
 #include "head.h"
 
-void	apply_flag_int(char *res, t_params *params, int *content, int ind)
+static void	apply_flag_int(char *res, t_params *params, int *content, int ind)
 {
 	char	c;
 
@@ -20,7 +20,7 @@ void	apply_flag_int(char *res, t_params *params, int *content, int ind)
 		res[ind] = c;
 }
 
-int	gen_len_int(t_params *params, int content)
+static int	gen_len_int(t_params *params, int content)
 {
 	int	l;
 
@@ -32,7 +32,7 @@ int	gen_len_int(t_params *params, int content)
 	return (l);
 }
 
-char	*gen_str_int(t_params *params, int *content, int w, int l)
+static char	*gen_str_int(t_params *params, int *content, int w, int l)
 {
 	char	*str;
 
@@ -43,7 +43,7 @@ char	*gen_str_int(t_params *params, int *content, int w, int l)
 	return (str);
 }
 
-char	*itoa_int(t_params *params, int *content, int w, int l)
+static char	*itoa_int(t_params *params, int *content, int w, int l)
 {
 	char	*str;
 

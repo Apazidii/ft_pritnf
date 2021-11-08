@@ -42,12 +42,12 @@ void	ft_putstr_fd(char *s, int fd);
 
 
 //prints
-int print_int(char *params, va_list m);
+int print_int(char *p, va_list m);
+int	print_hex(char *p, va_list m);
+int	print_HEX(char *p, va_list m);
 // int print_chr(char *params, unsigned char content);
 // int print_str(char *params, char *content);
 // int print_ptr(char *params, unsigned long int content);
-// int print_hex(char *params, unsigned int content);
-// int print_HEX(char *params, unsigned int content);
 // int print_prc();
 // int print_unt(char *params, unsigned int content);
 // int print_not(char *params);

@@ -1,29 +1,31 @@
-NAME	= libftprintf.a
-
-FUNCS 	=	ft_printf.c					\
+NAME	= printf
+FUNCS 	=	ft_printf.c				\
 			ft_tools.c				\
+			main.c					\
 			libft/ft_substr.c		\
 			libft/ft_strlen.c		\
 			libft/ft_atoi.c			\
 			libft/ft_putstr_fd.c	\
 			ft_print_int.c			\
+			ft_print_hex.c			\
+			ft_print_HEX.c			\
 
 FUNCSO = ${FUNCS:.c=.o}
 GCC = gcc
-CFLAGS = -c -Wextra -Wall -Werror
+CFLAGS = -c 
 HDRS = head.h
 
 all:		${NAME}
+			make clean
+			clear
+			./${NAME}
+			
 
 ${NAME}:	${FUNCSO} ${HDRS} 
-			ar rc ${NAME} ${FUNCSO}
+			${GCC} ${FUNCSO} -o ${NAME}
 			
 .c.o:		
 			${GCC} ${CFLAGS} $< -o ${<:.c=.o} 
-
-bonus: re
-
-re: fclean all
 
 clean:
 		rm -f ${FUNCSO}

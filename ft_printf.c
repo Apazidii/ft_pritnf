@@ -10,10 +10,10 @@ int	def_to_types(char *params, char type, va_list m)
 	// 	return (print_str(params, va_arg(m, char *)));
 	// else if (type == 'p')
 	// 	return (print_ptr(params, va_arg(m, unsigned long int)));
-	// else if (type == 'x')
-	// 	return (print_hex(params, va_arg(m, unsigned int)));
-	// else if (type == 'X')
-	// 	return (print_HEX(params, va_arg(m, unsigned int)));
+	else if (type == 'x')
+		return (print_hex(params, m));
+	else if (type == 'X')
+		return (print_HEX(params, m));
 	// else if (type == '%')
 	// 	return (print_prc());
 	// else if (type == 'u')
@@ -64,9 +64,3 @@ int	ft_printf(const char *str, ...)
 	va_end(m);
 	return (res);
 }
-
-// int main()
-// {
-// 	ft_printf("this %d number", 17);
-// 	// https://github.com/paulo-santana/ft_printf_tester.git
-// }
