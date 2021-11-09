@@ -192,5 +192,10 @@ t_params *gen_params(char *params, va_list m)
 	}
 	if (res->accuracy > 0)
 		res->zero = 0;
+	if (res->width < 0)
+	{
+		res->width = res->width * -1;
+		res->min = 1;
+	}
 	return (res);
 }

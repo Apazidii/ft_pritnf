@@ -4,8 +4,8 @@ int	def_to_types(char *params, char type, va_list m)
 {
 	if (type == 'd' || type == 'i')
 		return (print_int(params, m));
-	// else if (type == 'c')
-	// 	return (print_chr(params, va_arg(m, int)));
+	else if (type == 'c')
+		return (print_chr(params, m));
 	else if (type == 's')
 		return (print_str(params, m));
 	else if (type == 'p')
@@ -14,8 +14,8 @@ int	def_to_types(char *params, char type, va_list m)
 		return (print_hex(params, m));
 	else if (type == 'X')
 		return (print_HEX(params, m));
-	// else if (type == '%')
-	// 	return (print_prc());
+	else if (type == '%')
+		return (print_prc(params, m));
 	else if (type == 'u')
 		return (print_unt(params, m));
 	// else

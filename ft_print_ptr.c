@@ -75,7 +75,7 @@ int	print_ptr(char *p, va_list m)
 	str = itoa_ptr(params, &content, w, l);
 	free(params);
 	if (!(params->accuracy == 0 && params->width == 0 && content == 0))
-		ft_putstr_fd(str, 1);
+		ft_putstr_fd(str, 1, w);
 	free(str);
 	return (w);
 }

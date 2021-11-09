@@ -1,6 +1,6 @@
 #include "head.h"
 
-static void	apply_flag_int(char *res, t_params *params, int *content, int ind)
+static void	apply_flag_int(char *res, t_params *params, long int *content, int ind)
 {
 	char	c;
 
@@ -20,7 +20,7 @@ static void	apply_flag_int(char *res, t_params *params, int *content, int ind)
 		res[ind] = c;
 }
 
-static int	gen_len_int(t_params *params, int content)
+static int	gen_len_int(t_params *params, long int content)
 {
 	int	l;
 
@@ -32,7 +32,7 @@ static int	gen_len_int(t_params *params, int content)
 	return (l);
 }
 
-static char	*gen_str_int(t_params *params, int *content, int w, int l)
+static char	*gen_str_int(t_params *params, long int *content, int w, int l)
 {
 	char	*str;
 
@@ -43,7 +43,7 @@ static char	*gen_str_int(t_params *params, int *content, int w, int l)
 	return (str);
 }
 
-static char	*itoa_int(t_params *params, int *content, int w, int l)
+static char	*itoa_int(t_params *params, long int *content, int w, int l)
 {
 	char	*str;
 
@@ -64,7 +64,7 @@ int	print_int(char *p, va_list m)
 	int			l;
 	char		*str;
 	t_params	*params;
-	int			content;
+	long int			content;
 
 	params = gen_params(p, m);
 	content = va_arg(m, int);
@@ -75,7 +75,11 @@ int	print_int(char *p, va_list m)
 	str = itoa_int(params, &content, w, l);
 	free(params);
 	if (!(params->accuracy == 0 && params->width == 0 && content == 0))
-		ft_putstr_fd(str, 1);
+	{
+		ft_putstr_fd(str, 1, w);
+		free(str);
+		return (w);
+	}
 	free(str);
-	return (w);
+	return (0);
 }

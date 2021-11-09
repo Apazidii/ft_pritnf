@@ -40,7 +40,7 @@ t_params	*gen_params(char *params, va_list m);
 int		ft_strlen(const char *str);
 int		ft_atoi(const char *s);
 char	*ft_substr(char const *s, unsigned int start, unsigned int len);
-void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr_fd(char *s, int fd, int l);
 
 
 //prints
@@ -50,7 +50,8 @@ int	print_HEX(char *p, va_list m);
 int	print_ptr(char *p, va_list m);
 int	print_unt(char *p, va_list m);
 int	print_str(char *p, va_list m);
-// int print_chr(char *params, unsigned char content);
+int	print_chr(char *p, va_list m);
+int	print_prc(char *p, va_list m);
 // int print_prc();
 // int print_not(char *params);
 
