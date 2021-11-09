@@ -68,7 +68,11 @@ int	print_hex(char *p, va_list m)
 	str = itoa_hex(params, &content, w, l);
 	free(params);
 	if (!(params->accuracy == 0 && params->width == 0 && content == 0))
+	{
 		ft_putstr_fd(str, 1, w);
+		free(str);
+		return (w);
+	}
 	free(str);
-	return (w);
+	return (0);
 }

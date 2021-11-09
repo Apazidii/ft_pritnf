@@ -23,6 +23,8 @@ static int	gen_len_ptr(t_params *params, unsigned long int content)
 {
 	int	l;
 
+	if (content == 0)
+		return (5);
 	l = len_base(content, 16);
 	if (l < params->accuracy)
 		l = params->accuracy;
@@ -48,13 +50,21 @@ static char	*itoa_ptr(t_params *params, unsigned long int *content, int w, int l
 	char	*str;
 
 	str = gen_str_ptr(params, w, l);
-	if (!(params->accuracy == 0 && *content == 0))
+	if (!(*content == 0))
 	{
 		if (params->min)
 			itoa_base(*content, 16, str + l - 1, 0, params->accuracy);
 		else
 			itoa_base(*content, 16, str + w - 1, 0, params->accuracy);
 	}
+	else
+	{
+		if (params->min)
+			str_n_move(str, "(nil)", l);
+		else
+			str_n_move(str + (w - l), "(nil)", l);
+	}
+		
 	return (str);
 }
 

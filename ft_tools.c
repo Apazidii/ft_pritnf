@@ -168,6 +168,17 @@ void clear_params(t_params *s)
 	s->zero = 0;
 }
 
+int	check_accuracy(char *s)
+{
+	while (*s != '\0')
+	{
+		if (*s == '.')
+			return (1);
+		s++;
+	}
+	return (0);
+}
+
 t_params *gen_params(char *params, va_list m)
 {
 	t_params	*res;
@@ -190,7 +201,8 @@ t_params *gen_params(char *params, va_list m)
 			res->zero = 1;
 		params++;
 	}
-	if (res->accuracy > 0)
+	//if (check_accuracy(params))
+	if (res->accuracy >= 0)
 		res->zero = 0;
 	if (res->width < 0)
 	{
