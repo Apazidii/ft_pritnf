@@ -44,9 +44,9 @@ static char	*itoa_hex(t_params *params, unsigned int *content, int w, int l)
 	if (!(params->accuracy == 0 && *content == 0))
 	{
 		if (params->min)
-			itoa_base(*content, 16, str + l - 1, 0, params->accuracy);
+			itoa_base_low(*content, 16, str + l - 1, params->accuracy);
 		else
-			itoa_base(*content, 16, str + w - 1, 0, params->accuracy);
+			itoa_base_low(*content, 16, str + w - 1, params->accuracy);
 	}
 	return (str);
 }

@@ -13,13 +13,11 @@ int	def_to_types(char *params, char type, va_list m)
 	else if (type == 'x')
 		return (print_hex(params, m));
 	else if (type == 'X')
-		return (print_HEX(params, m));
+		return (print_uph(params, m));
 	else if (type == '%')
 		return (print_prc(params, m));
 	else if (type == 'u')
 		return (print_unt(params, m));
-	// else
-	// 	return (print_not(params));
 	else
 		return (1);
 }
@@ -35,17 +33,17 @@ char	*print_arg(char *s, va_list m, int *l)
 	res = ft_substr(s, 0, i);
 	*l = *l + def_to_types(res, s[i], m);
 	free(res);
-
 	return (&s[i + 1]);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	char	*s = (char *)str;
+	char	*s;
 	int		res;
 	va_list	m;
 
 	res = 0;
+	s = (char *)str;
 	va_start(m, str);
 	while (*s != '\0')
 	{

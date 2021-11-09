@@ -45,7 +45,8 @@ static char	*gen_str_ptr(t_params *params, int w, int l)
 	return (str);
 }
 
-static char	*itoa_ptr(t_params *params, unsigned long int *content, int w, int l)
+static char	*itoa_ptr(t_params *params, unsigned long int *content, \
+						int w, int l)
 {
 	char	*str;
 
@@ -53,9 +54,9 @@ static char	*itoa_ptr(t_params *params, unsigned long int *content, int w, int l
 	if (!(*content == 0))
 	{
 		if (params->min)
-			itoa_base(*content, 16, str + l - 1, 0, params->accuracy);
+			itoa_base_low(*content, 16, str + l - 1, params->accuracy);
 		else
-			itoa_base(*content, 16, str + w - 1, 0, params->accuracy);
+			itoa_base_low(*content, 16, str + w - 1, params->accuracy);
 	}
 	else
 	{
@@ -64,7 +65,6 @@ static char	*itoa_ptr(t_params *params, unsigned long int *content, int w, int l
 		else
 			str_n_move(str + (w - l), "(nil)", l);
 	}
-		
 	return (str);
 }
 

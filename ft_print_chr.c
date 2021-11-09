@@ -24,11 +24,11 @@ static char	*add_chr(t_params *params, unsigned char content, int w, int l)
 
 int	print_chr(char *p, va_list m)
 {
-	int			w;
-	int			l;
-	char		*str;
-	t_params	*params;
-	unsigned char		content;
+	int				w;
+	int				l;
+	char			*str;
+	t_params		*params;
+	unsigned char	content;
 
 	params = gen_params(p, m);
 	clear_params(params);

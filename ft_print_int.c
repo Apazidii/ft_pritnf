@@ -1,6 +1,7 @@
 #include "head.h"
 
-static void	apply_flag_int(char *res, t_params *params, long int *content, int ind)
+static void	apply_flag_int(char *res, t_params *params,
+							long int *content, int ind)
 {
 	char	c;
 
@@ -51,9 +52,9 @@ static char	*itoa_int(t_params *params, long int *content, int w, int l)
 	if (!(params->accuracy == 0 && *content == 0))
 	{
 		if (params->min)
-			itoa_base(*content, 10, str + l - 1, 0, params->accuracy);
+			itoa_base_low(*content, 10, str + l - 1, params->accuracy);
 		else
-			itoa_base(*content, 10, str + w - 1, 0, params->accuracy);
+			itoa_base_low(*content, 10, str + w - 1, params->accuracy);
 	}
 	return (str);
 }
@@ -64,7 +65,7 @@ int	print_int(char *p, va_list m)
 	int			l;
 	char		*str;
 	t_params	*params;
-	long int			content;
+	long int	content;
 
 	params = gen_params(p, m);
 	content = va_arg(m, int);

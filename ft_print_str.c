@@ -10,7 +10,7 @@ static int	gen_len_str(t_params *params, char *content)
 		if (l > params->accuracy && params->accuracy >= 0)
 			l = params->accuracy;
 	}
-	else if (params->accuracy >=6 || params->accuracy < 0)
+	else if (params->accuracy >= 6 || params->accuracy < 0)
 		l = 6;
 	else
 		l = 0;
@@ -26,8 +26,8 @@ static char	*gen_str_str(t_params *params, int w)
 	fill_field(str, params, w);
 	return (str);
 }
-//void		str_n_move(char *str, char *content, int l);
-static char	*add_str(t_params *params, char  *content, int w, int l)
+
+static char	*add_str(t_params *params, char *content, int w, int l)
 {
 	char	*str;
 
@@ -36,10 +36,12 @@ static char	*add_str(t_params *params, char  *content, int w, int l)
 		str_n_move(str, content, l);
 	else if (content && !params->min)
 		str_n_move(str + (w - l), content, l);
-	else if (!content && params->min && (params->accuracy >=6 || params->accuracy < 0))
+	else if (!content && params->min && \
+			(params->accuracy >= 6 || params->accuracy < 0))
 		str_n_move(str, "(null)", l);
-	else if (!content && !params->min && (params->accuracy >=6 || params->accuracy < 0))
-		str_n_move(str + (w - l), "(null)", l);	
+	else if (!content && !params->min && \
+			(params->accuracy >= 6 || params->accuracy < 0))
+		str_n_move(str + (w - l), "(null)", l);
 	else if (!content && params->min && params->accuracy < 6)
 		str_n_move(str, "", l);
 	else if (!content && !params->min && params->accuracy < 6)

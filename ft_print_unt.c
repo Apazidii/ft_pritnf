@@ -40,20 +40,20 @@ static char	*itoa_unt(t_params *params, unsigned int *content, int w, int l)
 	if (!(params->accuracy == 0 && *content == 0))
 	{
 		if (params->min)
-			itoa_base(*content, 10, str + l - 1, 0, params->accuracy);
+			itoa_base_low(*content, 10, str + l - 1, params->accuracy);
 		else
-			itoa_base(*content, 10, str + w - 1, 0, params->accuracy);
+			itoa_base_low(*content, 10, str + w - 1, params->accuracy);
 	}
 	return (str);
 }
 
 int	print_unt(char *p, va_list m)
 {
-	int			w;
-	int			l;
-	char		*str;
-	t_params	*params;
-	unsigned int			content;
+	int				w;
+	int				l;
+	char			*str;
+	t_params		*params;
+	unsigned int	content;
 
 	params = gen_params(p, m);
 	content = va_arg(m, unsigned int);

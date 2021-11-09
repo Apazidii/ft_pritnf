@@ -1,6 +1,6 @@
 #include "head.h"
 
-static void	apply_flag_HEX(char *res, t_params *params, int ind)
+static void	apply_flag_uph(char *res, t_params *params, int ind)
 {
 	char	c;
 
@@ -13,7 +13,7 @@ static void	apply_flag_HEX(char *res, t_params *params, int ind)
 		str_move(&res[ind], "0X");
 }
 
-static int	gen_len_HEX(t_params *params, unsigned int content)
+static int	gen_len_uph(t_params *params, unsigned int content)
 {
 	int	l;
 
@@ -25,33 +25,33 @@ static int	gen_len_HEX(t_params *params, unsigned int content)
 	return (l);
 }
 
-static char	*gen_str_HEX(t_params *params, int w, int l)
+static char	*gen_str_uph(t_params *params, int w, int l)
 {
 	char	*str;
 
 	str = (char *)malloc(sizeof(char) * w + 1);
 	str[w] = '\0';
 	fill_field(str, params, w);
-	apply_flag_HEX(str, params, w - l);
+	apply_flag_uph(str, params, w - l);
 	return (str);
 }
 
-static char	*itoa_HEX(t_params *params, unsigned int *content, int w, int l)
+static char	*itoa_uph(t_params *params, unsigned int *content, int w, int l)
 {
 	char	*str;
 
-	str = gen_str_HEX(params, w, l);
+	str = gen_str_uph(params, w, l);
 	if (!(params->accuracy == 0 && *content == 0))
 	{
 		if (params->min)
-			itoa_base(*content, 16, str + l - 1, 1, params->accuracy);
+			itoa_base_up(*content, 16, str + l - 1, params->accuracy);
 		else
-			itoa_base(*content, 16, str + w - 1, 1, params->accuracy);
+			itoa_base_up(*content, 16, str + w - 1, params->accuracy);
 	}
 	return (str);
 }
 
-int	print_HEX(char *p, va_list m)
+int	print_uph(char *p, va_list m)
 {
 	int				w;
 	int				l;
@@ -61,11 +61,11 @@ int	print_HEX(char *p, va_list m)
 
 	params = gen_params(p, m);
 	content = va_arg(m, unsigned int);
-	l = gen_len_HEX(params, content);
+	l = gen_len_uph(params, content);
 	w = params->width;
 	if (w < l)
 		w = l;
-	str = itoa_HEX(params, &content, w, l);
+	str = itoa_uph(params, &content, w, l);
 	free(params);
 	if (!(params->accuracy == 0 && params->width == 0 && content == 0))
 	{
