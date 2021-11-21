@@ -1,5 +1,5 @@
-#ifndef HEAD_H
-# define HEAD_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdio.h>
 # include <stdlib.h>
