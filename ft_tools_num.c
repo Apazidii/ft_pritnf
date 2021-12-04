@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "head.h"
 
 void	func_itoa(unsigned long int n, int base, char *res, int upper)
 {

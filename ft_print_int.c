@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "head.h"
 
 static void	apply_flag_int(char *res, t_params *params,
 							long int *content, int ind)
@@ -38,6 +38,8 @@ static char	*gen_str_int(t_params *params, long int *content, int w, int l)
 	char	*str;
 
 	str = (char *)malloc(sizeof(char) * w + 1);
+	if (!str)
+		return (NULL);
 	str[w] = '\0';
 	fill_field(str, params, w);
 	apply_flag_int(str, params, content, w - l);
@@ -49,6 +51,8 @@ static char	*itoa_int(t_params *params, long int *content, int w, int l)
 	char	*str;
 
 	str = gen_str_int(params, content, w, l);
+	if (!str)
+		return (NULL);
 	if (!(params->accuracy == 0 && *content == 0))
 	{
 		if (params->min)
@@ -74,6 +78,8 @@ int	print_int(char *p, va_list m)
 	if (w < l)
 		w = l;
 	str = itoa_int(params, &content, w, l);
+	if (!str)
+		return (0)
 	free(params);
 	if (!(params->accuracy == 0 && params->width == 0 && content == 0))
 	{

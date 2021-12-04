@@ -1,10 +1,14 @@
-#include "ft_printf.h"
+#include "head.h"
 
 int	is_convs(char c)
 {
-	if (c == 'd' || c == 'i' || c == 'c' ||	\
-		c == 'u' || c == 'x' || c == 'X' ||	\
-		c == 's' || c == 'p' || c == '%')
+	if (c == 'd' || c == 'i' || c == 'o' || \
+		c == 'u' || c == 'x' || c == 'X' || \
+		c == 'e' || c == 'E' || c == 'f' || \
+		c == 'F' || c == 'g' || c == 'G' || \
+		c == 'a' || c == 'A' || c == 'c' || \
+		c == 's' || c == 'p' || c == 'n' || \
+		c == '%')
 		return (c);
 	return (0);
 }
@@ -14,6 +18,24 @@ int	is_flags(char c)
 	if (c == '+' || c == '-' || \
 		c == ' ' || c == '#' || \
 		c == '0')
+		return (1);
+	return (0);
+}
+
+int	is_format(char *s)
+{
+	if (*s != '%')
+		return (0);
+	s++;
+	while (*s != '\0' && is_flags(*s))
+		s++;
+	while (*s != '\0' && (*s >= '0' && *s <= '9'))
+		s++;
+	if (*s == '.')
+		s++;
+	while (*s != '\0' && (*s >= '0' && *s <= '9'))
+		s++;	
+	if (is_convs(*s))
 		return (1);
 	return (0);
 }

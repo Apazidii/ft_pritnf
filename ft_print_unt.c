@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "head.h"
 
 static void	apply_flag_unt(char *res, t_params *params, int ind)
 {

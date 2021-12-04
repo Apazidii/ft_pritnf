@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "head.h"
 
 int	def_to_types(char *params, char type, va_list m)
 {
@@ -19,7 +19,7 @@ int	def_to_types(char *params, char type, va_list m)
 	else if (type == 'u')
 		return (print_unt(params, m));
 	else
-		return (1);
+		return (0);
 }
 
 char	*print_arg(char *s, va_list m, int *l)
@@ -32,6 +32,7 @@ char	*print_arg(char *s, va_list m, int *l)
 		i++;
 	res = ft_substr(s, 0, i);
 	*l = *l + def_to_types(res, s[i], m);
+	//сюда вставишь добавление строки с параметром к основной строке
 	free(res);
 	return (&s[i + 1]);
 }
@@ -39,26 +40,51 @@ char	*print_arg(char *s, va_list m, int *l)
 int	ft_printf(const char *str, ...)
 {
 	char	*s;
-	int		res;
+	int		res_n;
+	char 	*res_s;
 	va_list	m;
+	int		i;
 
+	res_s = NULL;
 	res = 0;
+	i = 0;
 	s = (char *)str;
 	va_start(m, str);
 	while (*s != '\0')
 	{
-		if (*s == '%')
+		if (is_format(s))
 		{
-			s++;
-			s = print_arg(s, m, &res);
+			res_s = str_add(res_s, strr(i, s - i), res_n, i);
+			s = print_arg(++s, m, &res_n);
+			res_n = res_n + i;
+			i = 0;
 		}
 		else
 		{
 			write(1, s, 1);
-			res++;
+			res_n++;
 			s++;
+			i++;
 		}
 	}
 	va_end(m);
 	return (res);
 }
+
+// int i = 0;
+//   char *res;
+//   res = NULL;
+//   while (*s != 0)
+//   {
+//     if (is_format(s))
+//     {
+//       res = str_add(res, strr(i, s - i));
+//       res = str_add(res, strr(4, "1234")); 
+//       i = 0;
+//     }
+//     else
+//       i++;
+      
+//     s++;
+//   }
+//   res = str_add(res, strr(i, s - i)); 

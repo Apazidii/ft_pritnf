@@ -1,5 +1,5 @@
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef HEAD_H
+# define HEAD_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -20,6 +20,7 @@ typedef struct	s_params
 
 //tools
 int		is_convs(char c);
+int		is_format(char *s);
 
 int		get_width(char *str, va_list m);
 int		get_accuracy(char *str, va_list m);
@@ -34,6 +35,9 @@ void		fill_field(char *s, t_params *params, int w);
 void		clear_params(t_params *s);
 t_params	*gen_params(char *params, va_list m);
 
+
+char *str_add(char *s1, char *s2, int l1, int l2);
+char *strr(int k, char *s);
 
 //libft
 int		ft_strlen(const char *str);

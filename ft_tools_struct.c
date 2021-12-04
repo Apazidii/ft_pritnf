@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "head.h"
 
 void	init_params(t_params *s)
 {

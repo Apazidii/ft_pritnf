@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "head.h"
 
 int	print_prc(char *p, va_list m)
 {
